@@ -10,8 +10,16 @@
 # bits.
 #
 # By default this script does nothing.
-/root/router_scripts/scripts/hostapd_wlan0_up.sh  &
 
-#/usr/sbin/hostapd -B /etc/hostapd/hostapd.conf
+#wlan0 as ap
+#/root/router_scripts/scripts/hostapd_wlan0_up.sh  &
+
+#wlan0 as client
+#/root/router_scripts/scripts/wlan0_connect_ap.sh  &
+
+#ppp0 as client
+/usr/bin/wvdial &
+
+#enable routing
 iptables -t nat -A POSTROUTING -s 192.168.1.0/24 ! -d 192.168.1.0/24  -j MASQUERADE
 exit 0
